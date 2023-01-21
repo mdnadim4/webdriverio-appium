@@ -22,6 +22,7 @@
     "appium-xcuitest-driver": "^4.16.10"
   },
   "dependencies": {
+    "@wdio/devtools-service": "^8.2.1",
     "appium": "^2.0.0-beta.52",
     "prettier": "^2.8.3",
     "vscode-extension-tester": "^5.2.1"

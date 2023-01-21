@@ -32,4 +32,33 @@ describe('Verify Add Notes', () => {
         
     });
 
+    it('Verify delete note & trash deleted item', async () => {
+        await driver.back()
+
+        const note = await $('//*[@resource-id="com.socialnmobile.dictapps.notepad.color.note:id/title"]').getText()
+
+        // Click on the note
+        await $('//*[@resource-id="com.socialnmobile.dictapps.notepad.color.note:id/title"]').click()
+
+        // Click on More button
+        await $('~More').click()
+
+        // Click on Delete option
+        await $('//*[@text="Delete"]').click()
+
+        // CLick on OK button
+        await $('//*[@text="OK"]').click()
+
+        // Click on Nav icon
+        await $('//*[@content-desc="More"]/android.widget.ImageView').click()
+
+        // Click on Trash icon
+        await $('//*[@text="Trash Can"]').click()
+
+        // Assertion deleted note
+        const trashItem = await $('//*[@resource-id="com.socialnmobile.dictapps.notepad.color.note:id/title"]')
+
+        await expect(trashItem).toHaveText(note)
+    });
+
 });

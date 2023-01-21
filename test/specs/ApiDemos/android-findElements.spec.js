@@ -1,4 +1,5 @@
 describe('Android Elements Test', () => { 
+    
     it('Find element by Accessibility ID', async () => {
 
         // Verify App Element
@@ -48,7 +49,7 @@ describe('Android Elements Test', () => {
         await $('android=new UiSelector().textContains("Command two")').click()
     });
 
-    it.only('Find Multiple Elements', async () => {
+    it('Find Multiple Elements', async () => {
         const expectedList = ['API Demos',"Access'ibility", 'Accessibility', 'Animation', 'App', 'Content', 'Graphics', 'Media', 'NFC', 'OS', 'Preference', 'Text', 'Views']
         const actualList = []
 

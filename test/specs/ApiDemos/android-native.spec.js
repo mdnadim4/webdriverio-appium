@@ -54,7 +54,7 @@ describe('Android Native Feature Test', () => {
 
     });
 
-    it.only('Verify Date Picker', async () => {
+    it('Verify Date Picker', async () => {
         
         // Access the direct date page
         await driver.startActivity("io.appium.android.apis", "io.appium.android.apis.view.DateWidgets1")

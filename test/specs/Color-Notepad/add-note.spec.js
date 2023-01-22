@@ -1,64 +1,66 @@
+import AddnotePage from "../../pageobjects/AddnotePage";
+const addnote = new AddnotePage()
+
 describe('Verify Add Notes', () => {
 
     it('Verify skip tutorial', async () => {
-        await $('//*[@text="SKIP"]').click()
+        
+        // Click on Skip
+        addnote.clickOnSkip()
 
-        await expect(await $('//*[@text="Add note"]')).toBeDisplayed()
+        // Assertion Skip Tutorial
+        addnote.assertSkipTutorial()
     });
 
     it('Add a note, save changes & verify note', async () => {
         // Click on Add note
-        await $('//*[@text="Add note"]').click()
+        addnote.clickOnAddNote()
 
         // Click on text
-        await $('//*[@text="Text"]').click()
+        addnote.clickOnText()
 
         // Verify editing text
-        await expect($('//*[@text="Editing"]')).toBeDisplayed()
+        addnote.verifyEditingText()
 
         // Input data on edit field
-        await $('//*[@resource-id="com.socialnmobile.dictapps.notepad.color.note:id/edit_title"]').setValue('Javascript Framework')
+        addnote.inputDataField()
 
         // Write data into Note
-        await $('//*[@resource-id="com.socialnmobile.dictapps.notepad.color.note:id/edit_note"]').setValue('Selenium\nCypress\nWebdriverIO\nNightwatch\nPlaywright')
+        addnote.writeDataNote()
 
         // Save the changes
-        await driver.back()
-        await driver.back()
+        addnote.saveChanges()
 
         // Verify the edit button & view note
-        await expect($('//*[@resource-id="com.socialnmobile.dictapps.notepad.color.note:id/edit_btn"]')).toBeDisplayed()
-        await expect($('//*[@resource-id="com.socialnmobile.dictapps.notepad.color.note:id/view_note"]')).toBeDisplayed()
-        
+        addnote.verifyEditBtn()
+        addnote.verifyViewNote()
     });
 
     it('Verify delete note & trash deleted item', async () => {
-        await driver.back()
-
-        const note = await $('//*[@resource-id="com.socialnmobile.dictapps.notepad.color.note:id/title"]').getText()
+        
+        // Single time back
+        addnote.singleBack()
 
         // Click on the note
-        await $('//*[@resource-id="com.socialnmobile.dictapps.notepad.color.note:id/title"]').click()
+        addnote.clickOnNote()
 
         // Click on More button
-        await $('~More').click()
+        addnote.clickOnMoreBtn()
 
         // Click on Delete option
-        await $('//*[@text="Delete"]').click()
+        addnote.clickOnDelete()
 
         // CLick on OK button
-        await $('//*[@text="OK"]').click()
+        addnote.clickOnOkBtn()
 
         // Click on Nav icon
-        await $('//*[@content-desc="More"]/android.widget.ImageView').click()
+        addnote.clickOnNavIcon()
 
         // Click on Trash icon
-        await $('//*[@text="Trash Can"]').click()
+        addnote.clickOnTrashIcon()
 
         // Assertion deleted note
-        const trashItem = await $('//*[@resource-id="com.socialnmobile.dictapps.notepad.color.note:id/title"]')
-
-        await expect(trashItem).toHaveText(note)
+        addnote.verifyDeletedText()
     });
 
 });
